@@ -1,0 +1,35 @@
+def calculate_calories(gender, height_cm, weight_kg, age, activity_level):
+    if gender.lower() == 'male':
+        bmr = 10 * weight_kg + 6.25 * height_cm - 5 * age + 5
+    elif gender.lower() == 'female':
+        bmr = 10 * weight_kg + 6.25 * height_cm - 5 * age - 161
+    else:
+        return "Invalid gender entered. Please enter 'male' or 'female'."
+
+    if activity_level == 'sedentary':
+        calories = bmr * 1.2
+    elif activity_level == 'lightly active':
+        calories = bmr * 1.375
+    elif activity_level == 'moderately active':
+        calories = bmr * 1.55
+    elif activity_level == 'very active':
+        calories = bmr * 1.725
+    elif activity_level == 'extra active':
+        calories = bmr * 1.9
+    else:
+        return "Invalid activity level entered."
+
+    return calories
+
+# Example usage:
+gender = input("Enter your gender (male/female): ")
+height_cm = float(input("Enter your height in centimeters: "))
+weight_kg = float(input("Enter your weight in kilograms: "))
+age = int(input("Enter your age in years: "))
+activity_level = input("Enter your activity level (sedentary/lightly active/moderately active/very active/extra active): ")
+
+calories = calculate_calories(gender, height_cm, weight_kg, age, activity_level)
+if isinstance(calories, str):
+    print(calories)
+else:
+    print("Your estimated daily calorie requirement is:", round(calories, 2), "calories.")
